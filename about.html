@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1 id="top">标题&1</h1><br>
+    <p>&nbsp;&nbsp;春眠<strong><em><del>不觉晓</del></em></strong>，处处闻啼<strong>鸟</strong>。<del>夜来风雨声</del>，花落知多<em>少</em>。
+    </p>
+    <p>春来发几枝，<span>愿君多采撷</span>。</p>
+    <!-- 在vscode中，h${标题$}*6就会出现下面的效果： -->
+    <h1>标题1</h1>
+    <h2>标题2</h2>
+    <h3>标题3</h3>
+    <h4>标题4</h4>
+    <h5>标题5</h5>
+    <h6>标题6</h6>
+    <!-- 在vscode中，p{段落}*5 就会出现下面的效果： -->
+    <p>段落</p>
+    <p>段落</p>
+    <p>段落</p>
+    <p>段落</p>
+    <p>段落</p>
+
+    <img src="images/bg.jpg" alt="好多巴巴" title="面包" width="100px">
+    <!-- 
+        jpg: 有损压缩 影响画质 图片较小
+        png: 无所压缩 不影响画质 透明通道 文件较大
+        gif：动图  
+    -->
+
+    <!-- 超链接 -->
+    <p><a href="http://www.baidu.com">百度首页</a></p>
+    <!-- target属性，在新窗口打开链接 -->
+    <p><a href="http://www.baidu.com" target="_blank">百度首页</a></p>
+    <!-- 图片做链接 -->
+    <p>
+        <a href="http://www.jekyllrb.com" target="_blank">
+            <img src="images/jekyll.png" alt="Jekyll" title="Go to Jekyll" />
+        </a>
+    </p>
+    <!-- 书签标记：锚点 -->
+    <p>
+        <a href="#top">回到顶部</a>
+    </p>
+    <!-- 无序列表 ul + li 实现 无顺序关系
+     有序列表 ol + li 实现 有顺序关系
+     自定义列表：内容标题 + 内容 列表 dl + dt + dd 实现
+-->
+    <!-- 
+    无序列表从前用 type=“circle”属性放在<ul>标签里面，但是现在这种做法已经过时了，应该用下面的方法。
+-->
+    <ul type="circle">
+        <li>苹果</li>
+        <li>香蕉</li>
+        <li>橘子</li>
+    </ul>
+
+    <ul style="list-style-type:circle">
+        <li>苹果</li>
+        <li>香蕉</li>
+        <li>橘子</li>
+    </ul>
+
+    <ol>
+        <li>首先，打开冰箱。</li>
+        <li>把大象放进去。</li>
+        <li>最后，关上冰箱。</li>
+    </ol>
+
+    <dl>
+        <dt>标题1</dt>
+        <dd>内容1</dd>
+        <dd>内容2</dd>
+        <dd>内容3</dd>
+        <dt>标题2</dt>
+        <dd>内容a</dd>
+        <dd>内容b</dd>
+        <dd>内容c</dd>
+    </dl>
+    <p>下面是用dl标签的一个示范：
+        <br>
+        <a href="https://www.mi.com/index.html" target="_blank">
+            <img src="images/dl_example.png">
+        </a>
+    </p>
+
+    <!-- 
+    表格 从前都会用表格来做布局，但是页面可读性会非常差，后面就被css的div取代了，所以现在基本只用来做表格 
+    属性colspan: 单元格可横跨的列数；rowspan：单元格可横跨的行数。
+-->
+    <table border="1">
+        <tr>
+            <th>部门</th>
+            <th>姓名</th>
+            <th>性别</th>
+            <th>工资</th>
+        </tr>
+        <tr>
+            <td>开发组</td>
+            <td>小明</td>
+            <td>男</td>
+            <td>10000</td>
+        </tr>
+        <tr>
+            <td>开发组</td>
+            <td>小明明</td>
+            <td>男</td>
+            <td>10000</td>
+        </tr>
+        <tr>
+            <td>开发组</td>
+            <td>小小明</td>
+            <td>男</td>
+            <td>10000</td>
+        </tr>
+    </table>
+    <table border="1">
+        <tr>
+            <th>部门</th>
+            <th>姓名</th>
+            <th>性别</th>
+            <th>工资</th>
+        </tr>
+        <tr>
+            <td rowspan="4">开发组</td>
+            <td>小明</td>
+            <td>男</td>
+            <td>10000</td>
+        </tr>
+        <tr>
+            <td>小明明</td>
+            <td>男</td>
+            <td>10000</td>
+        </tr>
+        <tr>
+            <td>小小明</td>
+            <td>男</td>
+            <td>10000</td>
+        </tr>
+        <tr>
+            <td colspan="2">工资合计</td>
+            <td>30000</td>
+        </tr>
+    </table>
+    <hr>
+    <br>
+    <!-- 表单：和服务器交互的机制
+        什么是表单：收集用户输入，提交给服务器。
+        输入：内容（包括普通文本、密码文本、单选框、多选框、下拉框）
+        提交：提交按钮
+             涉及到发送的过程，这就需要说到超文本传送协议，协议可以保证浏览器和服务器的通讯。
+             模式：请求和应答 浏览器需要主动发起请求 > 服务器接受请求 > 自身做处理 > 结果返回给浏览器 > 浏览器根据结果展示内容
+        表单的提交方式有GET和POST两种方式，这是通过form标签中的method属性来进行管理的。 
+        区别的话，GET是将内容提交给另外一个页面去处理，而POST是将内容放到本网页的头信息里去处理。
+        action属性：提交的网址，不写的话就是当前网址。
+
+    -->
+    <!--
+        input标签：标记表单的元素
+        type属性：说明表单元素是文本、密码还是提交按钮等等
+        name属性：告诉服务器这是什么
+        value属性：是指与服务器对应的值
+
+    -->
+    <form action="" method="POST">
+        用户名：<input type="text"  name="usr"><br>
+        密码：<input type="password" name="pass"><br>
+    <!-- 单选框 input标签，type属性的值为radio name属性的值一样，就是一个组，这一组里只能单选一个，如果值不一样，就互不干涉，可以同时选-->
+        性别：<input type="radio" name="sex" value="male">男
+        <input type="radio" name="sex" value="female">女
+        <input type="radio" name="sex" value="unknown">无可奉告<br>   
+    <!-- 复选框 input标签，type属性的值为checkbox -->
+        兴趣爱好：<input type="checkbox" name="ckb" value="reading"> 看书    
+                 <input type="checkbox" name="ckb" value="sleeping"> 睡觉
+                 <input type="checkbox" name="ckb"value="ball_game"> 打球球 <br> 
+    <!-- 作业 
+        button标签的type属性可以有submit、reset和button方式，他们有什么区别？
+        用button做按钮和用input来做按钮有什么区别？
+    -->
+        你电脑一般音量是：<input type="range"><br>
+        你的出生年月是：<input type="date"><br>
+        你最喜欢的颜色是：<input type="color"><br>
+        选择文件：<input type="file"><br>
+    <!-- 下拉框 select标签 -->
+        城市：<select name="city">
+                <option value="beijing">北京</option>
+                <option value="shanghai">上海</option>
+                <option value="guangzhou">广州</option>
+
+        </select><br>
+        <input type="submit">
+        button <button type="button"></button><br>
+        menu <button type="menu"></button><br>
+        reset <button type="reset"></button><br>
+        submit <button type="submit"></button><br>
+    </form>
+
+    <!-- 网页的布局
+         按照功能排成小块 > 排列好 > 把具体的内容放到小块里
+         为了实现这样的功能，需要用到<div>标签
+             <div>的作用：就是一个容器
+            现在都是用div来做布局，以前还会用
+                - <table>:
+                - <framset>：主要用在管理后台上
+    -->
+
+</body>
+
+</html>

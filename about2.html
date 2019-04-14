@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+    <!-- 网页的布局
+         按照功能排成小块 > 排列好 > 把具体的内容放到小块里
+         为了实现这样的功能，需要用到<div>标签
+             <div>的作用：就是一个容器
+            现在都是用div来做布局，以前还会用
+                - <table>:
+                - <framset>：主要用在管理后台上
+    -->
+    <div style="background-color: black; color:white; height:100px">
+        导航
+    </div>
+
+    <div style="background-color: rgb(99, 97, 97); width: 20%; float: left; height:300px">
+        菜单
+    </div>
+
+    <div style="background-color: whitesmoke; width: 80%; float: left; height:300px">
+        内容
+    </div>
+
+<!-- iframe：嵌套页面，比如想要嵌套百度的搜索 -->
+    百度搜索：<iframe src="http://www.baidu.com" frameboarder="0" width="100%"></iframe>
+    腾讯页面：<iframe src="http://www.qq.com" frameboarder="0" width="100%"></iframe>
+
+<!-- frameset：管理后台，比如说刷新导航栏后，只改变内容面板的内容 <frameset>是和<body>平级的元素，不能放在body里。 -->
+</body>
+</html>
