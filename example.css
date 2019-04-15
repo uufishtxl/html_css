@@ -6,8 +6,15 @@ div.red {
 
 }
 
-div.border {
+div.parent {
     border: 1px solid black;
+    width: 500px;
+    height: 200px;
+    background-color: gray;
+}
+
+div.child {
+    background-color: greenyellow;
 }
 
 #txt {
@@ -20,6 +27,8 @@ div.border {
 
 .txt {
     font-size: 100px;
+    color: red;
+    border:1px solid black;
 }
 
 .txt2 {

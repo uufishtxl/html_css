@@ -1,0 +1,53 @@
+div {
+    /* 按顺序来写background的属性：color > image > repeat > attachment > position */
+    background: url('images/bg.jpg') repeat-y fixed;
+    height: 1500px;
+}
+
+body {
+    font: italic bold 20px/60px "华康圆体", "Micrsoft Yahei";
+}
+
+.txt1 {
+    letter-spacing: 10px;
+}
+
+.txt2 {
+    letter-spacing: -5px;
+}
+
+.txt3 {
+    word-spacing: 30px;
+}
+
+.txt4 {
+    word-spacing: -5px;
+}
+
+.txt5 {
+    direction: rtl;
+    text-decoration: none;
+}
+
+.txt6 {
+    direction: ltr;
+    text-decoration: line-through;
+    text-indent: 60px;
+    text-transform: capitalize;
+    width: 200px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: clip;
+}
+
+.txt7 {
+    direction: ltr;
+    text-decoration: overline;
+    text-transform: uppercase;
+}
+
+.txt8 {
+    direction: ltr;
+    text-decoration: underline;
+    text-transform: lowercase;
+}
