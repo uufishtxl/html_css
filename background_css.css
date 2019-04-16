@@ -25,8 +25,8 @@ body {
 }
 
 .txt5 {
-    direction: rtl;
     text-decoration: none;
+    width: 600px;
 }
 
 .txt6 {
@@ -34,10 +34,9 @@ body {
     text-decoration: line-through;
     text-indent: 60px;
     text-transform: capitalize;
-    width: 200px;
     white-space: nowrap;
     overflow: hidden;
-    text-overflow: clip;
+    text-overflow: ellipsis;
 }
 
 .txt7 {
@@ -50,4 +49,9 @@ body {
     direction: ltr;
     text-decoration: underline;
     text-transform: lowercase;
+}
+
+img {
+    width: 500px;
+    float: left;
 }

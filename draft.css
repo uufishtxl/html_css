@@ -1,0 +1,45 @@
+div {
+    border: 1px solid black;
+    background-color: greenyellow;
+}
+
+.div1 {
+    float: left;
+    background-color: red;
+    width: 150px;
+    height: 100px; 
+}
+
+.div2 {
+    float: left;
+    background-color: red;
+    width: 150px;
+    height: 100px; 
+}
+
+.div3 {
+    float: left;
+    background-color: red;
+    width: 150px;
+    height: 100px; 
+}
+
+.div4 {
+    float: left;
+    background-color: red;
+    width: 150px;
+    height: 100px; 
+}
+
+.div5 {
+    float: left;
+    background-color: red;
+    width: 150px;
+    height: 100px; 
+}
+
+.container::after {
+    content: "";
+    display: block;
+    clear: both;
+}

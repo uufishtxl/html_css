@@ -508,9 +508,404 @@ text-indent: 60px;
 text-transform: capitalize;
 ```
 
-### 只显示若干个字符，并且
+### 案例：只显示若干个字符，并且将未显示的字符用...表示
 
-使用``:
+1. 使用`width`限制块级元素的宽度，这样文本会自动换行；
+2. 使用`white-space`，禁用掉自动换行，这样文本会溢出在块级元素的外面，但是仍然会显示；
+3. 使用`overflow`，设置为`hidden`，将溢出文本隐藏；
+4. 使用`text-overflow`
+```
+    width: 200px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellilpsis;
 ```
 
+#### `text-overflow`属性
+
+- cilp：默认值，保持原样
+- ellilpsis：将隐藏文字替换为省略号
+
+## 图片和文字结合的相关CSS样式
+
+下面一段代码，将`<img>`和文字都放在一个`<p>`标签里：
 ```
+<p></p><img src="images/jekyll.png" alt="jekyll">Hello World, 你好，世界！</p>
+```
+出来的效果是这样的：  
+![Pseudo Element](images/text_figure.png)  
+可以看到文字默认是与图片的底部对齐的。如果要进行修改，需要用到`vertical-align`，对应的值有：
+- top
+- center
+- bottom
+- 比分比，比如100%是一个行高。
+
+```
+img {
+    width: 500px;
+    vertical-align: top;
+}
+```
+上面的示例，就能让图片和文字上对齐。
+
+### 文本环绕
+
+文本和图片一起出现，且文本很长，图片设置为垂直对齐上对齐的情况时，就会出现除第一行外所有文字都出现在图片下方的情况，如下图所示：  
+![文字图片](images/text_figure_surround.png)  
+如果想要实现文本绕排功能，就要用到`float`属性。
+```
+img {
+    width: 500px;
+    float: left;
+}
+```
+
+## 链接状态样式改变及列表样式优化
+
+### 链接状态样式
+
+伪类对应四种状态：
+- 初始状态: `a:link`
+- 被访问的状态：`a:visited`
+- 鼠标悬浮的状态：`a:hover`
+- 点击下去的状态：`a:active`
+
+还能加入`font-size`等属性，让字体随着状态的变化变换大小。
+
+### 列表样式优化
+
+#### `<ul>`的样式优化
+
+一般来说，我们会将`ul`的`list-style-type`样式设置为none，这样就可以摆脱系统内置的项目编号，使用自己的图片来定义列表的样式。
+```
+ul {
+    list-style-type: none;
+}
+```
+
+### `<li>`的样式优化
+
+接着，就可以通过为`<li>`元素定义`background-image`属性来使用自定义图片了。你需要做以下几点：
+1. `background-image: ('URL')`：定义使用什么样的图片；
+2. `background-repeat: no-repeat;`禁用图片的循环功能；
+3. `height`: 根据图片的大小调整行高；
+4. `padding`：如果不设置的话，图片位置可能在文字右边，这样显然不行，所以需要适当调整图片的位置才可以。
+
+下面是一个例子：
+```
+li {
+    background-image: url('images/great.png');
+    background-repeat: no-repeat;
+    height: 50px;
+    padding: 25px 50px 0;
+}
+```
+
+# 盒子模型
+
+可以将页面内所有的元素看作一个矩形的盒子。
+
+## 盒子的组成
+
+- 盒子的内容
+- 内边距
+- 盒子框
+- 外边距
+
+这里打个比方，有一堆鞋盒堆在一起，那么：
+- 内容：就是鞋子；
+- 内边距：鞋子放在鞋盒里，四周的空隙；
+- 盒子框：鞋盒；
+- 外边距：鞋盒和鞋盒之间的距离。
+
+## 如何定义内边距`padding`
+
+- 完整定义padding以顺时针方向定义，按上右下左的顺序进行定义
+- 上下20px 左右50px padding: 20px 50px;
+- 上20 左右50 下60px padding: 20px 50px 60px;
+- 也可以拆分成paddig-left等去定义，不过一般倾向上面的做法。
+
+## 如何定义外边距`margin`
+
+和padding的方法类似，不过有一个margin重叠的问题：
+
+- 平级的元素，上下会取两个的最大值，比如上面盒子的margin-bottom是60，下面盒子的margin-top是30，那么最终两个盒子中间的留白是60.
+  1. 解法方式：用`float`解决
+  2. 用inline-block来解决
+
+### 使用`float`来解决
+
+在css中：
+```
+.test1 {
+    border: 1px solid black;
+    margin: 30px;
+    background: violet;
+}
+
+.test2 {
+    margin: 60px;
+    background-color: cyan;
+    border: 1px solid black;
+}
+
+div {
+    float: left;
+    width: 800px;
+}
+```
+
+### 使用`inline-block`来解决
+
+不改变`.test1`和`.test2`，就改变`float`：
+```
+div {
+    /*float: left;*/
+    display: inline-block;
+    width: 800px;
+}
+```
+
+## 块级元素嵌套时`margin`显示问题的解决：
+CSS:  
+```
+.box1 {
+    margin: 30px;
+    background: yellow;
+    border: 1px solid black;
+}
+
+.box2 {
+    margin: 30px;
+    background: green;
+    border: 1px solid black;
+}
+```
+HTML:  
+```
+<div class="box1">
+  <div class="box2">DIV2</div>
+</div>
+```
+
+这样写的话，会发现并没有按照预期的想法，box2嵌在box1里面，且和box1有30px的上下左右的空白距离。
+![nesting margin](images/nesting_margin.png)
+
+这是因为，box1、和box2的内容太少了，就变成了好像一个上下都没有封起来的盒子，那也无从谈起上下的边距了。解决方法是：
+1. 为盒子设置边框
+   ```
+   border: 1px solid black;
+   ```
+2. 加上`padding`的设置
+3. 用`overflow`进行裁剪。
+  ```
+.box1 {
+      margin: 30px;
+      background: yellow;
+      /*border: 1px solid black;*/
+      /* padding: 10px;*/
+      overflow: hidden;
+  }
+  ```
+
+# `float`和`clear`精讲
+  
+  块元素是一种会占据行的元素。那如果多个`div`标签元素在一起的话，就会出现垂直按序出现的情况。  
+  想要让块元素在同一垂直位置出现，就需要用到`float`属性。这样一来，定义了`float`属性的块级元素就会像气球
+  一样产生“浮动”的效果，飘到同一排中。而标准流中的块级元素就会被覆盖住。比如说：
+  ```
+  .div1 {
+    float: left;
+    background-color: red;
+    width: 150px;
+    height: 100px; 
+}
+
+.div2 {
+    float: left;
+    background-color: red;
+    width: 150px;
+    height: 100px; 
+}
+
+.div3 {
+    float: left;
+    background-color: red;
+    width: 150px;
+    height: 100px; 
+}
+
+.div4 {
+    float: left;
+    background-color: red;
+    width: 150px;
+    height: 100px; 
+}
+
+.div5 {
+    float: left;
+    background-color: red;
+    width: 150px;
+    height: 100px; 
+}
+
+.div6 {
+    background-color: rgb(0, 255, 157);
+    width: 150px;
+    height: 200px; 
+}
+  ```
+
+  html:
+  ```
+    <div class="div1">div1</div>
+    <div class="div2">div2</div>
+    <div class="div3">div3</div>
+    <div class="div4">div4</div>
+    <div class="div5">div5</div>
+    <div class="div6">div6</div>
+  ```
+  呈现的效果：  
+![float](images/image_float_cover.png)
+
+如果想让`div`标签元素正常全尺寸显示在定义了`float`的前5个元素的下方，就需要加入`clear`属性，清掉前面的`float`，在`.div6`的定义中加入这一行即可：
+```
+clear: both;
+```
+
+如果要在同一垂直高度显示5个`div`标签元素，并且需要让它们处于标准流中，应该怎么做呢？
+这时候，需要用到伪元素。
+作为一个块级元素，`div`的首尾也有`<-- <before> -->`和`<-- <after> -->`这两个伪元素在，之前有利用过这两个伪元素给块级元素加上前缀文字和后缀文字。这里就利用`after`来给它定义空的内容，并且给与它`clear`属性，来达成目的。
+在html中，将垂直一排的`div`元素嵌套到一个`div`标签中，将它的类别设置为`container`。
+```
+     <div class="container">
+         <div class="div1">div1</div>
+         <div class="div2">div2</div>
+         <div class="div3">div3</div>
+         <div class="div4">div4</div>
+         <div class="div5">div5</div>
+     </div>
+```
+
+css中，定义`container`的`after`：
+```
+.container::after {
+    content: "";
+    display: block;
+    clear: both;
+}
+```
+
+需要注意的是，`after`这个伪元素是一个行内元素，所以特地写了`display: block`来将它转换成块元素。  
+当然，还有一种做法是直接加一个内容为空的`div6`的标签，在它的定义中进行清float的操作，但是这样就显得不够优雅。
+
+## `margin`的问题
+
+在上面的例子中，如果我们将`div`标签的定义中的边框设置去掉，另外加上`margin: 20px;`的定义，会出现一个问题：
+
+![div margin](images/div_margin.png)
+
+按照`div`的全局定义，父级`div`元素和子级`div1`元素应该会有`20px`的留白，但是并没有如期出现。
+```
+div {
+    background-color: greenyellow;
+    margin: 20px;
+}
+```
+
+那么伪元素又需要出现了，它不但可以清浮动，还能清除掉这种margin重叠的问题。
+```
+.container::before {
+    content: "";
+    display: table;
+}
+```
+
+和刚才对`after`伪元素的定义合并到一起，就可以这样写：
+```
+.container::after, .container::before {
+    content: "";
+    display: table;
+}
+
+.container::after {
+    clear: both;
+}
+```
+
+# 相对定位、绝对定位
+
+`position`:  
+- `static`：默认值
+- `fixed`: 无论页面怎么滚动，永远固定在一个位置
+- `relative`：相对父级容器位置的定位，可以类比成灵魂出窍。
+- `absolute`：绝对定位。和`float`定位有点类似，也可以类比成绑气球。
+
+这两种比喻下面会用具体的[图解](css.md#灵魂出窍和绑气球)来解释。
+
+- 坐标定位的方式：
+  - `top`:
+  - `bottom`：
+  - `left`:
+  - `right`:    
+  他们两两一组，`top`和`bottom`一组，`left`和`right`一组。比如：
+  ```
+    div {
+      width: 200px;
+      height: 300px;
+      background: rgb(228, 226, 226);
+      position: fixed;
+      bottom: 100px;
+      right: 50px;
+  }
+  ```
+
+  ## 灵魂出窍和绑气球
+
+  相对定位可以类比成灵魂出窍：  
+  
+  ![相对定位](images/position_relative.png)  
+  可以看到`<div1>`标签元素虽然做了位置上的移动，但是仍然占据了移动位置前的空间，`<div2>`元素并没有顶掉他的位置。
+
+  再来看绝对定位的效果：  
+  ![绝对定位](images/position_absolute.png)  
+  `<div1>`已无所谓身体灵魂，全部都向定义的坐标位置移动了，并且`<div2>`顶上了它的位置，就这一点来说，像不像“绑了气球”的`float`属性呢？
+
+  ## 子级`div`标签元素的绝对定位
+
+  需要注意的是，子集`div`标签元素有绝对定位时，它会去一层层去追溯上级的定位信息。如果上级所有标签元素都没有定位信息，就直接按照`body`去定位。因此，下面的例子中，`div1`并不会根据它的父级标签去定位，而是直接按照`body`来定位了。
+
+示例中的css的定义：
+```
+  .div1 {
+    width: 100px;
+    height: 100px;
+    position: absolute;
+    top: 50px;
+    left: 100px;  
+}
+.container {
+    margin: auto;
+    background: green;
+}
+```
+
+示例中html：
+```
+    <div class="container">
+        <div class="div1">div1</div>
+    </div>
+```
+
+![绝对定位的问题](images/position_relative_problem.png)
+
+解决方法，就是在`container`中加入定位信息：
+```
+.container {
+    margin: auto;
+    background: green;
+    position: relative;
+}
+```
+
+![绝对定位的问题](images/position_relative_problem_solved.png)

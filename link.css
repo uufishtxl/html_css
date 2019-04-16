@@ -1,0 +1,27 @@
+a:link {
+    color: greenyellow;
+}
+
+a:visited {
+    color: blue;
+}
+
+a:hover {
+    color: pink;
+    font-size: 30px;
+}
+
+a:active {
+    color: gold
+}
+
+ul {
+    list-style-type: none;
+}
+
+li {
+    background-image: url('images/great.png');
+    background-repeat: no-repeat;
+    height: 50px;
+    padding: 25px 50px 0;
+}

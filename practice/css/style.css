@@ -1,0 +1,44 @@
+body {
+    margin: 0;
+    padding: 0
+}
+
+.topbar {
+    /* background-color: #333333; */
+    border:1px solid black;
+    height: 40px;
+}
+
+.container {
+    margin: 0 auto;
+    width: 1226px;
+    border:1px solid black;
+}
+
+.topbar a {}
+
+.topbar_nav {
+    float: left;
+}
+
+.topbar_info {
+    float: right;
+}
+
+.topbar_cart {
+    float: right;
+}
+
+.container::before, .container::after {
+    content: "";
+    display: table;
+}
+
+.container::after {
+    clear: both;
+}
+
+a {
+    text-decoration: none;
+}
+
