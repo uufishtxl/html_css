@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,29 +9,115 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="shortcut icon" href="favicon.ico">
 </head>
+
 <body>
     <div class="topbar">
         <div class="container">
             <div class="topbar_nav">
-                <a href="">小米商城</a>
-                <a href="">MIUI</a>
-                <a href="">IoT</a>
-                <a href="">云服务</a>
-                <a href="">金融有品</a>
-                <a href="">小爱开放平台</a>
-                <a href="">政企服务</a>
+                <!-- 每一个菜单文字后面都有一个竖杠
+                     直接加竖杠的话，会发现格式不一致的问题
+                     因此这里将竖杠都包围到了span标签里
+                     然后再去css里设置span的内外边距等，达到一致的视觉效果
+                -->
+                <a href="">小米商城</a><span>|</span>
+                <a href="">MIUI</a><span>|</span>
+                <a href="">IoT</a><span>|</span>
+                <a href="">云服务</a><span>|</span>
+                <a href="">金融有品</a><span>|</span>
+                <a href="">小爱开放平台</a><span>|</span>
+                <a href="">政企服务</a><span>|</span>
                 <a href="">Select Region</a>
             </div>
-            <div class="topbar_info">
-               <a href="">登录</a>
-               <a href="">注册</a>
-               <a href="">消息通知</a> 
+            <div class="topbar_cart"><a href=""><i class="iconfont">&#xe63f;</i>购物车<span>（0）</span></a></div>
+            <div class="topbar_info" clearfix>
+                <a href="">登录</a><span>|</span>
+                <a href="">注册</a><span>|</span>
+                <a href="" class="sep">消息通知</a>
             </div>
-            <div class="topbar_cart"><a href="">购物车（0）</a></div>
-
-
         </div>
+    </div>
+    <div class="header">
+        <div class="container">
+            <div class="header_logo">
+                <a href="#" class="lr">小米官网</a>
+            </div>
+            <div class="header_nav">
+                <ul class="nav-list" clearfix>
+                    <li class="nav-category">
+                        <a href="">全部商品分类</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="">小米手机</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="">红米</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="">电视</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="">笔记本</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="">家电</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="">新品</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="">路由器</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="">智能硬件</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="">服务</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="">社区</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="header_search">
+                <form action="" class="search-form">
+                    <input type="search" name="keyword" class="search-text">
+                    <input type="submit" value="&#xe651;" class="search-button iconfont">
+                </form>
+                <div class="header_search_candidate">
+                    <a href="">小米8</a>
+                    <a href="">小米MIX 2S</a>
+                </div>
 
+            </div>
+        </div>
+    </div>
+    <div class="seckill">
+        <div class="seckill_head"></div>
+        <div class="container">
+            <div class="seckill_nav">
+                <ul class="clearfix">
+                    <li class="active"><em>18:00</em><span><em>即将开始 距开始<br>01:25:15</em></span></li>
+                    <li><em>20:00</em><span>即将开始</span></li>
+                    <li><em>22:00</em><span>即将开始</span></li>
+                    <li><em>00:00</em><span>明日开始</span></li>
+                    <li><em>08:00</em><span>明日开始</span></li>
+                </ul>
+            </div>
+            <div class="seckill_goods">
+                <ul class="clearfix">
+                    <li>
+                        <div class="bg"></div>
+                        <div class="info"></div>
+                    </li>
+                </ul>
+            </div>
+            <p class="seckill_notice">*小米秒杀活动规则： 
+                    1.秒杀商品是否参加活动，以订单结算页显示为准，活动包括但不限于优惠券、赠品、满减、满赠等；<br>
+                    2.秒杀商品数量有限，活动以下单支付成功为准，请加入购物车后尽快下单支付；<br>
+                    3.秒杀价不含运费，最终以订单结算页价格为准。<br>
+                    温馨提示：因可能存在系统缓存、页面更新导致价格变动异常等不确定性情况出现，如您发现活动商品标价或促销信息有异常，请您立即联系小米客服，以便我们及时补正。</p>
+        </div>
     </div>
 </body>
+
 </html>

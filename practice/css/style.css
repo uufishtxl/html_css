@@ -1,24 +1,76 @@
-body {
+@font-face {
+    font-family: 'iconfont';
+    src: url('iconfont.eot');
+    src: url('iconfont.eot?#iefix') format('embedded-opentype'),
+        url('iconfont.woff2') format('woff2'),
+        url('iconfont.woff') format('woff'),
+        url('iconfont.ttf') format('truetype'),
+        url('iconfont.svg#iconfont') format('svg');
+  }
+
+  .iconfont {
+    font-family: "iconfont" !important;
+    font-size: 16px;
+    font-style: normal;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+
+  }
+
+body, ul, li {
     margin: 0;
     padding: 0
 }
 
+ul {
+    list-style-type: none;
+}
+
+body {
+    /* 通过height设置一个滚动条 */
+    height: 2500px;
+    font: "Helvetica Neue",Helvetica,Arial,"Microsoft Yahei","Hiragino Sans GB","Heiti SC","WenQuanYi Micro Hei",sans-serif;
+}
 .topbar {
-    /* background-color: #333333; */
-    border:1px solid black;
+    /* border:1px solid black; */
+    background-color: #333333;
     height: 40px;
 }
 
 .container {
     margin: 0 auto;
     width: 1226px;
-    border:1px solid black;
+    /* border:1px solid black; */
 }
 
-.topbar a {}
+.topbar a {
+    color: #b0b0b0;
+    font-size: 12px;
+}
+
+.topbar a:hover {
+    color: #fff;
+}
 
 .topbar_nav {
     float: left;
+    /* 用height和line-height实现了居中效果 */
+    height: 40px;
+    line-height: 40px;
+    /* 在加入竖杠后，发现竖杠后面会自动出现空格一样的视觉效果 
+       为了解决这个问题，将这个div中的字体统一设置为0 
+       虽然，这样继承原则会导致这个容器下的子元素都会继承0的字体
+       但是，显然在css文件中，对这些子元素的字体都有单独的定义
+       */
+    font-size: 0;
+}
+
+/* 设置span的属性 */
+.topbar_nav span {
+    font-size: 12px;
+    font-family: sans-serif;
+    color: #424242;
+    margin: 0.5em;
 }
 
 .topbar_info {
@@ -29,9 +81,193 @@ body {
     float: right;
 }
 
-.container::before, .container::after {
+.topbar_cart i{
+    font-size: 20px;
+    line-height: 20px; 
+    margin-right: 4px;
+    vertical-align: -2px;
+}
+
+.topbar_cart a {
+    /* 变成一个块元素 */
+    display: block;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    width: 120px;
+    background-color: #424242;
+}
+
+.topbar_cart span {
+    margin-left: -4px;
+    font-size: 12px;
+}
+
+.topbar_cart a:hover {
+    background-color: #ffffff;
+    color: #ff6700;
+}
+
+.topbar_info {
+    margin-right: 15px;
+}
+
+.topbar_info a {
+    float: left;
+    padding: 0 5px;
+    line-height: 40px;
+    height: 40px;
+}
+
+.topbar_info span {
+    float: left;
+    font-size: 12px;
+    font-family: sans-serif;
+    color: #424242;
+    margin: 0.5em;
+}
+
+.topbar_info .sep {
+    padding: 0 10px;
+}
+
+.header {
+    height: 120px;
+}
+
+.header_logo {
+    float: left;
+    width: 62px;
+    height: 55px;
+    margin-top: 22px;
+    /* border: 1px solid black; */
+}
+
+.header_search {
+    float: right;
+    width: 296px;
+    height: 50px;
+    margin-top: 25px;
+    position: relative;
+}
+
+.header_logo a {
+    display: block;
+    width: 55px;
+    height: 55px;
+    background: #ff6700 url('../img/mi-logo.png') no-repeat 50% 50%;
+}
+
+.header_logo a.lr {
+    text-align: left;
+    text-indent: -99992em;
+}
+
+.header_nav {
+    float: left;
+    width: 820px;
+    height: 100px;
+    /* border: 1px solid black; */
+}
+
+.header_nav .nav-list {
+    width: 820px;
+    height: 88px;
+    font-size: 16px;
+    padding: 12px 0 0 30px;
+}
+
+.header_nav .nav-list .nav-item {
+    float: left;
+}
+
+.header_nav .nav-list .nav-item a {
+    display: block;
+    padding: 26px 10px 38px;
+    color: #333;
+}
+
+.header_nav .nav-list .nav-category {
+    float: left;
+    width: 127px;
+    padding: 0 15px 0 0;
+}
+
+.header_nav .nav-list .nav-category a {
+    display: block;
+    padding: 26px 0 38px;
+    text-align: right;
+    color: #333;
+}
+
+.header_nav .nav-list .nav-item a:hover {
+    color: #ff6700;
+}
+
+.header_search .search-form {
+    position: relative;
+    display: block;
+    width: 296px;
+    height: 50px;
+}
+
+.header_search .search-form .search-text {
+    position: absolute;
+    top: 0;
+    right: 51px;
+    display: block;
+    width: 245px;
+    height: 50px;
+    line-height: 50px;
+    border: 1px solid #e0e0e0;
+    outline: 0;
+}
+
+.header_search .search-form .search-button {
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: block;
+    width: 52px;
+    height: 50px;
+    border: 1px solid #e0e0e0;
+    font-size: 20px;
+    line-height: 20px;
+    background-color: #fff;
+    color: #616161;
+    outline: 0;
+}
+
+.header_search .search-form .search-button:hover {
+    background-color: #ff6700;
+    color: #fff;
+}
+
+.header_search .header_search_candidate {
+    display: block;
+    position: absolute;
+    top: 14px;
+    right: 62px;
+    text-align: right;
+}
+
+.header_search .header_search_candidate a {
+    margin-left: 5px;
+    padding: 0 5px;
+    font-size: 12px;
+    background: #eee;
+    color: #757575;
+}
+
+.header_search .header_search_candidate a:hover {
+    color: #fff;
+    background: #ff6700;
+}
+
+.container::before, .container::after, .clearfix::before, .clearfix::after {
     content: "";
     display: table;
+    clear: both;
 }
 
 .container::after {
@@ -42,3 +278,101 @@ a {
     text-decoration: none;
 }
 
+/* seckill */
+.seckill {
+    background-color: #f5f5f5;
+}
+
+.seckill_head {
+    background: url(../img/seckill-head.jpg) no-repeat 50% 0;
+    height: 170px;
+    margin-top: 19px;
+}
+
+.seckill_nav {
+    margin: -68px 0 22px;
+}
+.seckill_nav ul {
+    height: 68px;
+    background: #414141;
+}
+
+.seckill_nav li {
+    display: block;
+    float: left;
+    color: #fff;
+    width: 20%;
+    height: 68px;
+    line-height: 68px;
+    text-align: center;
+    /* 鼠标悬浮出现小手 */
+    cursor: pointer;
+}
+
+.seckill_nav .active {
+    background-color: #f1393a;
+}
+
+.seckill_nav li em {
+    display: inline-block;
+    /* em 本身是斜体，将斜体取消掉 */
+    font-style: normal;
+    font-size: 18px;
+    /* 1表示和自己一样大小 */
+    line-height: 1;
+    vertical-align: middle;
+    margin-left: 30px;
+}
+
+.seckill_nav span {
+    display: inline-block;
+    text-align: left;
+    line-height: 1;
+    vertical-align: middle;
+    font-size: 14px;
+    margin-left: 15px;
+}
+
+.seckill_nav span em {
+    display: inline-block;
+    font-size: 14px;
+    margin-left: 0;
+    font-style: normal;
+    text-align: left;
+    line-height: 20px;
+}
+
+.seckill_goods ul {
+    /* border: 1px solid black; */
+    margin-right: -13px;
+}
+.seckill_goods li {
+    width: 400px;
+    height: 190px;
+    background-color: #fff;
+    float: left;
+    /* border: 1px solid black;*/
+    margin-right: 13px;
+    margin-bottom: 13px;
+}
+
+.seckill_notice {
+    font-size: 12px;
+    color: #999;
+    margin-top: 100px;
+    padding-bottom: 35px;
+}
+
+.seckill_goods .bg {
+    float: left;
+    width: 190px;
+    height: 190px;
+    border: 1px solid red;
+}
+
+.seckill_goods .info {
+    height: 190px;
+    width: 190px;
+    margin-left: 210px;
+    border: 1px solid green;
+}
