@@ -27,8 +27,8 @@ ul {
 }
 
 body {
-    /* 通过height设置一个滚动条 */
-    height: 2500px;
+    /* 通过height设置一个滚动条 
+    height: 2500px; */
     font: "Helvetica Neue",Helvetica,Arial,"Microsoft Yahei","Hiragino Sans GB","Heiti SC","WenQuanYi Micro Hei",sans-serif;
 }
 .topbar {
@@ -367,12 +367,246 @@ a {
     float: left;
     width: 190px;
     height: 190px;
-    border: 1px solid red;
+    /* border: 1px solid red;*/
 }
 
 .seckill_goods .info {
     height: 190px;
     width: 190px;
     margin-left: 210px;
-    border: 1px solid green;
+    /* border: 1px solid green; */
+    padding-top: 30px;
+}
+
+.seckill_goods .bg img {
+    height: 190px;
+}
+
+.seckill_goods .info .name {
+    font-size: 16px;
+    color: #333;
+    height: 16px;
+    line-height: 16px;
+    display: block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.seckill_goods .info .tips {
+    font-size: 12px;
+    line-height: 12px;
+    color: #b0b0b0;
+    margin-top: 10px;
+}
+
+.seckill_goods .info .price {
+    font-size: 16px;
+    line-height: 16px;
+    color: #f1393a;
+    margin-top: 14px;
+    margin-bottom: 0;
+}
+
+.seckill_goods .info .price del {
+    color: #999;
+    font-size: 12px;
+    line-height: 12px;
+    margin-left: 10px;
+}
+
+.seckill_goods .info .btn {
+    display: inline-block;
+    width: 118px;
+    height: 28px;
+    font-size:14px;
+    color: #fff;
+    line-height: 28px;
+    text-align: center;
+    background-color: #fe393a;
+    margin-top: 19px;
+    border: 1px solid #fe393a;
+}
+
+
+.service .aftersales {
+    /* border: 1px solid black; */
+    padding: 27px 0px;
+}
+
+.service .aftersales ul {
+    margin:0px;
+    padding: 0px;
+}
+
+.service .aftersales ul li {
+    float: left;
+    width: 19.8%;
+    height: 25px;
+    font-size: 16px; 
+    line-height:25px;
+    text-align: center;
+    border-left: 1px solid #e0e0e0;
+}
+
+.service .aftersales ul li.frameless {
+    border-left: none;
+}
+
+.service .aftersales ul li a {
+    display: inline-block;
+    color: #616161;
+    width: 150px;
+}
+
+.service .aftersales ul li a i {
+    margin-right: 4px;
+}
+
+.service .aftersales ul li a:hover {
+    color: #ff6700
+}
+
+.service .footer_links {
+    border-top: 1px solid #e0e0e0;
+}
+
+.service .footer_links {
+    padding: 40px 0;
+}
+
+.service .footer_links .support_col {
+    float: left;
+    width: 160px;
+    height: 112px;
+    margin: 0;
+}
+
+.service .footer_links .support_col dl dt {
+    font-size:14px;
+    line-height: 1.25;
+    margin: -1px 0 25px;
+    color: #424242;
+}
+
+.service .footer_links .support_col dl dd {
+    font-size:12px;
+    margin: 10px 0 0;
+    color: #757575;
+}
+
+.service .footer_links .support_col dd a:visited {
+    color: #757575;
+} 
+
+/* hover的状态定义必须在最后面才会生效，否则会被visted等状态覆盖掉 */
+.service .footer_links .support_col dd a:hover {
+    color: #ff6700;
+}
+
+.service .footer_links .contact {
+    float: right;
+    width: 251px;
+    text-align: center;
+    border-left: 1px solid #e0e0e0;
+    color: #616161;
+    margin-top: 10px;
+}
+
+.service .footer_links .contact p {
+    margin: 0 0 16px;
+    font-size:12px;
+}
+
+
+.service .footer_links .contact .number {
+    font-size: 22px;
+    margin: 0 0 5px;
+    line-height: 1;
+    color: #ff6700;
+}
+
+.service .footer_links .contact .customer_service {
+    display: inline-block;
+    font-size: 14px;
+    line-height:28px;
+    border: 1px solid #ff6700;
+    width: 118px;
+    height: 28px;
+    color: #ff6700;
+    text-align: center;
+    
+}
+
+.service .footer_links .contact a:hover {
+    background-color: #ff6700;
+    color: #fff;
+}
+
+.footer {
+    background-color: #fafafa;
+    padding: 30px 0;
+    font-size: 12px;
+    margin-top: 0;
+    }
+
+.footer .mi_logo {
+    float: left;
+    width: 62px;
+    height: 55px;
+    margin-top: 0;
+    padding: 0;
+    /* border: 1px solid black; */
+}
+
+.footer .mi_logo a {
+    display: block;
+    width: 55px;
+    height: 55px;
+    background: #ff6700 url('../img/mi-logo.png') no-repeat 50% 50%;
+}
+
+.footer .mi_logo a.lr {
+    text-align: left;
+    text-indent: -99992em;
+}
+
+.footer .info_text {
+    float: left;
+    height: 12px;
+    line-height: 12px;
+    margin-top: 0;
+    font-size: 0; 
+}
+
+.footer .info_text a {
+    font-size: 12px;
+    font-family: sans-serif;
+    color: #757575;
+}
+
+/* 设置span的属性 */
+.footer .info_text span {
+    font-size: 12px;
+    font-family: sans-serif;
+    color: #b0b0b0;
+    margin: 0.25em;
+}
+
+.footer .info_text p {
+    font-size: 12px;
+    color: #b0b0b0;
+    margin-top: 4px;
+    line-height: 1.25;
+}
+
+.footer .info_text img {
+    width: 85px;
+}
+
+.footer .slogan {
+    margin: 100px auto 10px;
+    text-align: center;
+    font: bold 19px "楷体";
+    color: #b0b0b0;
 }

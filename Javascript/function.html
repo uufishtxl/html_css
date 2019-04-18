@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 下面的三段代码中，有重复的部分，这时候就可以使用函数了。
+        // var time = 7;
+
+        // for(var a = 1; a <= 10; a++){
+        //     console.log(a + "好好学习，天天向上！");
+        // }
+
+        // var time = 12;
+
+        // for(var a = 1; a <= 10; a++){
+        //     console.log(a + "好好学习，天天向上！");
+        // }
+
+        // var time = 23;
+        // for(var a = 1; a <= 10; a++){
+        //     console.log(a + "好好学习，天天向上！");
+        // }
+
+        //喊口号，喊num次。
+        // function chant(num,time) {
+        //     for( var a = 1; a <= num; a++){
+        //     console.log(time + "点" + a + "好好学习，多买代言！");
+        //     }
+        // }
+
+        // var time = 7;
+        // //这里定义5次
+        // chant(5,time);
+
+        // var time = 12;
+        // //这里定义8次
+        // chant(8,time);
+
+        // var change = chant;
+        // change();
+
+        // var time = 12;
+        // chant();
+
+        // var time = 23;
+        // chant();
+
+        // function add(x, y) {
+        //     return x + y;
+        // }
+
+        // var rs = add(1, 2);
+        // console.log("1+2 = " + rs);
+
+        // var rs = add(3, 4);
+        // console.log("3+4 = " + rs);
+
+        // function chant(num,time) {
+        //     time = time || 8;
+        //     // if(time == undefined)
+        //     // time = 7;
+        //     for (var a = 1; a <= num; a++) {
+        //         console.log(time + "点" + a + "好好学习，多买代言！");
+        //     }
+        // }
+
+        // var time = 8;
+        // chant (10);
+
+        // var time = 12;
+        // chant (10,12)
+
+        function add() {
+            var z = 0;
+            for(var i = 0; i < arguments.length; i++){
+                z += arguments[i];
+            }
+            return z;
+        }
+
+        var rs = add(1,2,3,4,5);
+        console.log(rs);
+
+        rs = add(8383,93839,74884,92874,727485,92884);
+        console.log(rs);
+
+        
+    </script>
+</body>
+
+</html>

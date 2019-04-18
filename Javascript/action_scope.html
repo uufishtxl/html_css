@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // function add(){
+        //     var y = 100; //局部变量
+        //     console.log("add():y = " + y);
+        // }
+
+        // var y = 1;//全局变量
+        // add();
+
+        // console.log ("全局y = " + y);
+
+        // console.log("x = " + x);
+
+        // var x = 10;
+
+        // add();  //函数也是变量
+
+        // function add(){
+        //     console.log("add()");
+        // }
+       
+       // 引入函数的立即执行：把函数声明和函数执行放在一起
+
+       var plus = (function(){
+           var counter = 0;
+           
+          return function(){ //调用这个plus：
+               counter++; // 没有加var，变成全局变量了，这样它就有全局变量的生命周期了
+               console.log("counter = " + counter);
+           }
+       })();
+
+        plus();
+
+       plus();
+
+       plus();
+
+       
+    </script>
+</body>
+
+</html>
