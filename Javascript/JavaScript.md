@@ -817,3 +817,515 @@ for(pN in person1){
     console.log("person1的属性名：" + pN + "值：" + person1[pN]);
 }
 ```
+
+### 对象的引用和赋值
+
+var 是一种很小的容器，只能容纳数字、字符串、布尔值等。对象对于它来说太庞大了。所以，如果想要放对象，需要将对象打包起来，然后给予它一个简单的值，作为标签，进而去获取相关信息。
+
+`var person2 = person1;` 这个动作就好比去打开001的包裹；让person2引用001的内容。既然是引用，所以也难怪修改`person2.name`的值的时候，会出现`person1.name`也一起修改的状况。
+
+```
+person1 = {
+            name: "xiaoming",
+            sex: "male",
+            age: "18",
+            slogan: function () {
+                for (var i = 0; i < 10; i++) {
+                    console.log("who am i");
+                }
+            }
+        }
+
+        // var 是一种很小的容器，只能容纳数字、字符串、布尔值等。对象对于它来说太庞大了。所以，如果想要放对象，需要将对象打包起来，然后给予它一个简单的值，作为标签，进而去获取相关信息。
+        var person1 = 001; 
+        var person2 = person1; //去打开001的包裹；它引用了001的内容
+        person2.name = "xiaochu" //既然是引用，当然会将person1和person2都改了。
+```
+
+```
+function PersonClass() {
+            this.name = "xiaoming";
+            this.sex = "male";
+            this.age = "18";
+            this.slogan = function() {
+                for(var i = 0; i < 10; i++){
+                    console.log("who am i");
+                }
+            } 
+        }
+        var person1 = new PersonClass();
+        var person2 = new PersonClass();
+        person2.name = "xiaochu"
+```
+
+也可以通过传参数的方式通过了建立对象，这样就不需要再一个个修改属性的值了
+```
+function PersonClass(pName, pSex, pAge) {
+    this.name = pName;
+    this.sex = pSex;
+    this.age = pAge;
+    this.slogan = function() {
+        for(var i = 0; i < 10; i++){
+            console.log("who am i");
+        }
+    } 
+}
+
+var person1 = new PersonClass("xiaoming", "Male", "18");
+
+var person2 = new PersonClass("xiaochu", "Female", "15");
+```
+
+甚至，还能设置默认参数值：
+```
+function PersonClass(pName, pSex, pAge) {
+    this.name = pName || "xiaoming";
+    this.sex = pSex || "Male";
+    this.age = pAge || "18";
+    this.slogan = function() {
+        for(var i = 0; i < 10; i++){
+        console.log("wo shi: " + this.name);
+        }
+    } 
+}
+
+var person1 = new PersonClass();
+
+var person2 = new PersonClass("xiaochu", "Female", "15");
+```
+
+可以发现，构造函数的方式几乎都能用到类的创建中。但是需要注意的是，如果需要引用一个变量，必须用`this.attribute`的格式，比如：`console.log("wo shi: " + this.name);`
+
+#### 命名空间用类来写
+
+用对象来表示命名空间：
+
+```
+var abc = {
+
+}
+```
+
+以后就用对象的形式`abc.Age = 100;`
+
+#### 系统提供的类
+
+var obj1 = {};
+var obj2 = new Object(); // 都是得到一个空的对象
+
+万物皆对象，无论值还是方法。互相之间还能转换。
+比如下面把数字转成字符串：
+```
+var n1 = 123;
+var str1 = no1.toString();
+```
+
+可以前往[这里](http://www.w3school.com.cn/jsref/jsref_obj_math.asp)，查看更多的转换。下面的这段代码是为了看，执行一亿次a++，浏览器需要多少耗时：
+```
+var time1 = new Date(); //获取本地电脑的时间
+    var t = 0;
+    for(var i = 0; i < 100000000; i++){
+        t++;
+    }
+
+    var time2 = new Date();
+    var n = time2.getTime() - time1.getTime();
+```
+
+#### 数学相关的对象
+
+math有点类似于命名空间。  
+取随机数：
+```
+for(var i = 0; i < 10; i++){
+    console.log(Math.floor(Math.random() * 10 ));
+}
+```
+
+# 浏览器原理和BOM
+
+BOM = Browser Object Mode，浏览器对象模式
+
+- 浏览器原理
+- JS时间线
+- 弹窗
+- 获取导航栏的数据
+- 网页前进后退、屏幕大小
+- 计时器
+
+## 浏览器如何加载页面
+
+浏览器有点像简单的操作系统。  
+
+1. 输入一个网址，比如`www.baidu.com`
+2. 把网址转换为IP地址：为了定位服务器，需要IP地址。比如`10.10.10.10`，有了IP地址，就能找到服务器。而网址是**域名**，域名是为了好记。具体的流程是：
+   1. 浏览器把`www.baidu.com`发送给DNS服务器；
+   2. 服务器返回给浏览器对应的IP地址；
+3. 浏览器接受到IP地址，并将地址**缓存到本地**。这样下次就能直接拿到IP地址了。
+4. 浏览器开始向`www.baidu.com`请求
+   - 怎么理解HTTP/HTTPS协议？  
+     浏览器前往服务器需要一种“交通方式”，而HTTP/HTTPS等传输协议就是这种方式。
+5. 服务器收到了一个请求。
+   - **端口**是什么？  
+     可以把服务器比作一座办公大楼，大楼里有很多窗口（1~65536）。
+     请求网页默认从80端口请求。如果是别的端口，就要在地址中注明。
+6. 服务器将请求的内容处理一下返回给浏览器。
+7. 浏览器收到内容，将内容进行解析。
+8. 呈现页面给用户。
+
+## 浏览器的多线程
+
+- 做JS解析的线程
+- UI渲染线程
+- 事件触发的线程
+- 发起请求的线程
+- 定时器的线程
+
+## 处理js时，是单线程的
+
+仍然做个比喻，银行里面只有一个柜台去处理和js相关的事情。所以处理js事情时，会有队列。之所以执行单线程，是为了方便编程。
+
+单线程引起了两个概念：
+- 同步任务
+- 异步任务
+
+用存钱做例子。  
+- 同步任务中，我到了窗口开始填单子，回答问题，后面的人只能排队；
+- 异步任务中，我先把单子填好，再去排队，把钱给柜台就结束。
+
+## js怎么在浏览器生效
+
+### 第一阶段：载入阶段（JS的时间线）
+
+默认情况下，是同步的。  
+1. 浏览器获取页面内容，比如`2.html`，开始进行解析。
+2. 生成DOM树。
+   ![DOM树生成到一半](../images/domtree.png)
+3. 遇到`script`时，将暂停生成DOM树。转而开始同步，也就是将js脚本下载下来，并用js解析器对脚本作解析并执行。
+4. 继续DOM树。  
+   ![DOM树生成到一半](../images/domtree_continued.png)
+5. 解析完成。
+6. 进行渲染。同时，还有文件正在下载，比如图片等。
+7. 载入阶段结束，页面完全加载。
+
+这种流程中，由于DOM树的生成过程可能会被js同步中断，因此无法获取节点的情况的发生。比如下面：
+HTML:
+```
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>客户端</title>
+    <script src="dom.js"></script>
+</head>
+<body>
+    <div id="div1">aaaa</div>
+    <div id="div2">bbbb</div>
+</body>
+```
+运行到`script`后，开始同步脚本。脚本：
+```
+var n = document.getElementById("div1");
+console.log(n);
+n = document.getElementById("div2");
+console.log(n);
+```
+运行脚本的时候，还没有在DOM树中生成`div1`, `div2`两个节点，所以会在控制台中看到null。
+
+为了解决这种问题，现在有两种做法：
+- 是将`script`放到后面，延迟加载；
+- 异步加载。
+
+### 第二阶段：事件阶段
+
+默认情况下，是异步的。
+
+### 第三阶段：
+
+# DOM
+
+## DOM树
+
+需要将内容转换成浏览器能够看懂的数据结构，方便查找、修改、遍历和操作。DOM就是这样一种树形的数据结构。  
+
+![DOM树](../images/dom_tree_example.png)
+
+
+- document节点：只有一个
+- 标签节点/元素节点：样式要找到标签节点来修改
+- 文本节点：
+
+### 找到节点的方法
+
+三种最常用的方法：
+- 通过ID来查找
+- 通过标签名来查找
+- 通过`CSS class`来查找
+
+### 数据结构
+
+- 线性 Linear
+  - 单链表
+  - 循环链表
+  - 队列
+  - 栈
+  - 数组
+- 树状 Tree-structure，根据算法进行命名
+  - 二叉树；
+  - 平衡树；
+  - 红黑树；
+- 网状 Nesting
+  - 有向图
+  - 无向图
+  - 寻路算法
+
+#### 通过`id`来查找
+
+`id`具有唯一性。  
+`document.getElementById("")`
+
+```
+var div1 = document.getElementById("div1");
+```
+但是，有时候会出现`null`的值。这是因为js时间线的关系。在前面的章节，学习到过浏览器在解析内容的时候，如果碰到了`script`标签，就会暂停DOM树的解析，转而去提取脚本信息。因此，遇到这种问题的时候，只要将`script`移动到`body`的闭合标签前面就可以了。
+
+
+#### 通过标签名来查找
+
+`document.getElementsByTagName("");`
+
+标签名是多个的，所以是Elements。得到的会是一个数组。
+```
+var ps = document.getElementsByTagName("p");
+```
+
+#### 通过class来获取节点
+
+`document.getElementsByClassName("");`  
+通过class来获取节点，无论节点有多少个class，都能找到。
+
+### 三种方法的区别
+
+- 通过id获取到的直接就是一个节点。
+- 通过标签和Class获取到的是一个数组。即使只获得了一个节点，也仍然是一个数组。通过从数组提取具体的节点。
+- 通过id获取，只能通过document对象来使用。而Tag和Class，可以在任意标签节点上使用。
+
+#### 就第二点的具体说明
+
+HTML  
+```
+<div id="div1" class="box1 txt1">
+    div1
+    <p class="txt txt1">p1</p>
+    <p class="txt">p2</p>
+</div>
+```
+JS  
+```
+var div1 = document.getElementById("div1");
+//在标签节点下通过Class查找节点
+var ps = div1.getElementsByClassName("txt1");
+```
+可以看到：
+- 通过标签或Class查找可以在节点下进行，而通过id查找节点只能在document对象下进行。
+- 在节点下查找的话，不包括当前节点，而只能查找该节点以下的节点。
+
+### 创建节点和添加节点到DOM树
+
+1. 获取想要创建的节点的父节点
+   ```
+   var div1 = document.getElementById("div1");
+   ```
+2. 创建新节点
+   ```
+   var p = document.createElement("p");
+   ```
+   到这一步，只是将一个叫做"p"的元素创建到了document中。接着，就要将它加入到DOM树中的指定位置中。
+3. 添加节点到DOM树中的指定节点位置
+   ```
+   div1.appendChild(p);
+   ```
+   现在，已经将`p`标签创建到DOM树的指定位置了。现在试着插入一个文本节点。比方说，为刚才创建的`p`标签加入文字节点。
+4. 创建文字节点
+   ```
+   var p1txt = document.createTextNode("我是一个段落");
+   ```
+5. 将文字节点加入到DOM树的指定位置：
+   ```
+   p.appendChild(p1txt);
+   ```
+
+### 删除节点
+
+删除节点`removeChild()`，是指从当前节点删除子节点。以下面作为例子进行：  
+HTML
+```
+<body>
+    <div id="div1">
+        <div id="div2">div2</div>
+    </div>
+    <script src="dom.js"></script>
+</body>
+```
+现在，就试着从上面的这段HTML代码中删除`div2`这个节点。根据`removeChild`的定义，我们需要这么做：  
+1. 找到div2的父节点，也就是div1。
+   ```
+   var div1 = document.getElementById("div1");
+   ```
+2. 现在，就能删除了：
+   ```
+   div1.removeChild(div2);
+   ```
+
+上面这种方法可行。但是太麻烦了。能不能直接找到div2，然后将它删除呢？
+
+直接用div2.parentNode来取代div1
+```
+div2.parentNode.removeChild(div2);
+```
+
+### 对节点的属性和内容进行操作
+
+1. 一样的，先要获取要操作的属性的节点。
+   ```
+   var img1 = document.getElementById("img1");
+   ```
+2. 然后，就能修改这个节点上的属性了。
+   ```
+   img1.src = "dom_tree_example.png";
+   ```
+
+#### 两个特例
+
+##### 修改class属性
+
+因为class在js里面是类的关键词，所以不能直接使用，强制要求改成`className`，比如，有这么一段`html`代码：`<img id="img1" src="logo.png" class="box">`。现在要通过js脚本将`class`改成`box1`。
+1. 仍然找到这个节点。
+   ```
+   var img1 = document.getElementById("img1");
+   ```
+2. 注意，修改属性的时候，不要直接用class这个名字，需要改成className：
+   ```
+   img1.className = "box1";
+   ```
+
+##### CSS样式的修改
+
+CSS是一种层叠属性，可以通过`.`来解决这个问题，比如`img1.style.color = "100px";`
+
+```
+img1.style.width = "30px";
+```
+
+#### 自定义属性的修改
+
+##### 获取属性名称
+
+获取属性`getAttribute("")`，括号里面是属性的名字，当然也可以放系统本身的属性名称，比如class、id等。
+
+```
+var div1 = document.getElementById("div1");
+div1.getAttribute("dat")
+```
+
+##### 修改属性名称
+`setAttribute("","")` 括号中，逗号前面是属性的名称，后面是属性的值。
+
+##### 删除属性
+
+`removeAttribute("")` 括号中，是属性的名称。
+
+### 通过`innerHTML`修改同一开关标签内的HTML内容
+
+同样，先要获取属性
+
+```
+var p1 = document.getElementById("p1");
+p1.innerHTML = "我就是想要让你面目全非";
+```
+
+顾名思义，innerHTML里面的内容是可以包含HTML标签的
+```
+p1.innerHTML = "<a href='www.baidu.com'>皮皮虾，我们走</a>";
+```
+需要，注意要把修改内容里面的双引号改成单引号。
+
+### 通过`innerText`修改同一开关标签内的文本
+
+和innerHTML功能类似，不过上面的例子中的内容，就会完整的以文本出现，不会被解析。
+
+# 事件的原理
+
+## 什么是事件
+
+在页面上点击、滚动滚落都是事件。需要将这些事件运用起来，呈现更丰富的内容。事件的流程：
+1. 用户操作HTML元素
+2. 产生一个事件
+3. 事件主动地调用设定的方法/函数
+
+- 事件源：产生事件的地方；
+- 事件的类型：点击、键盘
+- 事件的对象：记录好事件相关的所有信息
+- 事件的处理程序：函数
+
+## 注册
+
+什么是注册？注册就是将以后会发生的事情先提前报备。比如父母的叮嘱“没钱了就给家里打电话”。由事件的类型（没钱了）+函数（打电话）注册到元素（孩子）身上。
+
+两种方式进行注册：
+- 通过html的属性：
+  - 属性名：on+事件的名字，比如`onclick`
+  - 属性值：方法/函数名
+    - [直接在html中设定](JavaScript.md#直接在html中设定)
+    - 通过js元素的对象来设定
+- 
+
+### 直接在html中设定
+在脚本中定义函数：
+```
+num = 0;
+function add(){
+    console.log("点击： "+ ++num);
+}
+```
+在html中定义事件的属性和值：
+```
+<div id="div1" onclick="add()">div1</div>
+```
+之后，在页面上点击div1，就会执行函数。
+
+![执行函数](../images/event_html.png)
+
+### 通过js元素的对象来设定
+
+在脚本中：
+```
+num = 0;
+function add(){
+    console.log("点击： "+ ++num);
+}
+
+var div1 = document.getElementById("div1");
+div1.onclick = add;
+```
+注意，直接对对象来写，后面的函数只要写上名称就可以，不需要和在html中写一样，加上参数的括号。
+
+#### 把添加在onclick后面的事件删除掉
+```
+num = 0;
+function add(){
+    console.log("点击： "+ ++num);
+}
+
+var div1 = document.getElementById("div1");
+div1.onclick = add;
+div1.onclick = null;
+```
+
+### 通过调用系统提供的方法
+
+`div1.addEventListener( , , );`
+需要传三个参数：
+- 事件类型，比如onclick
+- 对应的函数，比如函数add
+- 事件的处理方式

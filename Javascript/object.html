@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
 </head>
+
 <body>
     <script>
         // var obj1 = {
@@ -14,28 +16,126 @@
         //     "1": 1,
         // }    
 
-        var person1 = {
-            name: "xiaoming",
-            sex: "male",
-            age: "18",
-            son: {
-                name: "martin",
-                sex: "male",
-            },
-            slogan: function() {
-                for(var i = 0; i < 10; i++){
-                    console.log("who am i");
-                }
-            }
+        // var person1 = {
+        //     name: "xiaoming",
+        //     sex: "male",
+        //     age: "18",
+        //     son: {
+        //         name: "martin",
+        //         sex: "male",
+        //     },
+        //     slogan: function() {
+        //         for(var i = 0; i < 10; i++){
+        //             console.log("who am i");
+        //         }
+        //     }
+        // }
+
+        // // var martin = person1.son;
+        // // delete person1.son; //只是断掉关系，人还是存在
+
+        // for(pN in person1){
+        //     console.log("person1的属性名：" + pN + "值：" + person1[pN]);
+        // }
+
+
+        // var person1 = {
+        //     name: "xiaoming",
+        //     sex: "male",
+        //     age: "18",
+        //     slogan: function() {
+        //         for(var i = 0; i < 10; i++){
+        //             console.log("who am i");
+        //         }
+        //     }
+
+        // }
+
+        // var person2 = person1; //把person1赋值给person2
+        // person2.name = "xiaochu"; //把person2的名字改一下，这样做后person1和person2的名字都变成xiaochu了
+
+        // person1 = {
+        //     name: "xiaoming",
+        //     sex: "male",
+        //     age: "18",
+        //     slogan: function () {
+        //         for (var i = 0; i < 10; i++) {
+        //             console.log("who am i");
+        //         }
+        //     }
+        // }
+
+        // // var 是一种很小的容器，只能容纳数字、字符串、布尔值等。对象对于它来说太庞大了。所以，如果想要放对象，需要将对象打包起来，然后给予它一个简单的值，作为标签，进而去获取相关信息。
+        // var person1 = 001; 
+        // var person2 = person1; //去打开001的包裹；它引用了001的内容
+        // person2.name = "xiaochu" //既然是引用，当然会将person1和person2都改了。
+
+        //  var person1 = {
+        //     name: "xiaoming",
+        //     sex: "male",
+        //     age: "18",
+        //     slogan: function() {
+        //         for(var i = 0; i < 10; i++){
+        //             console.log("who am i");
+        //         }
+        //     }
+
+        // }
+        //用类的形式创建对象。
+        // var person2 = new PersonClass();
+
+        //ES5 function -> ES6 class。ES6中创建类只要class PersonClass {}就行。
+
+        //为了区分函数和类，类里不要用变量了
+        // function PersonClass() {
+        //     this.name = "xiaoming";
+        //     this.sex = "male";
+        //     this.age = "18";
+        //     this.slogan = function() {
+        //         for(var i = 0; i < 10; i++){
+        //             console.log("who am i");
+        //         }
+        //     } 
+        // }
+
+        // var person1 = new PersonClass();
+
+        // var person2 = new PersonClass();
+
+        // person2.name = "xiaochu"
+
+        //构造函数的方式
+
+        // function PersonClass(pName, pSex, pAge) {
+        //     this.name = pName || "xiaoming";
+        //     this.sex = pSex || "Male";
+        //     this.age = pAge || "18";
+        //     this.slogan = function() {
+        //         for(var i = 0; i < 10; i++){
+        //             console.log("wo shi: " + this.name);
+        //         }
+        //     } 
+        // }
+
+        // var person1 = new PersonClass();
+
+        // var person2 = new PersonClass("xiaochu", "Female", "15");
+
+        // var time1 = new Date(); //获取本地电脑的时间
+        // var t = 0;
+        // for(var i = 0; i < 100000000; i++){
+        //     t++;
+        // }
+
+        // var time2 = new Date();
+        // var n = time2.getTime() - time1.getTime();
+
+
+        for(var i = 0; i < 10; i++){
+            console.log(Math.floor(Math.random() * 10 ));
         }
 
-        // var martin = person1.son;
-        // delete person1.son; //只是断掉关系，人还是存在
-
-        for(pN in person1){
-            console.log("person1的属性名：" + pN + "值：" + person1[pN]);
-        }
-        
     </script>
 </body>
+
 </html>
